@@ -22,8 +22,8 @@ app.post('/api/send-email', async (req, res) => {
 
   // Send mail
   const mailOptions = {
-    from: 'your@email.com',
-    to: 'recipient@email.com', // Your recipient's email
+    from: process.env.EMAIL_USER, // Use the sender's email address
+    to: process.env.CONTACT_EMAIL, // Use the contact email address for receiving emails
     subject: subject,
     text: `${name} (${email}) says: ${message}`,
   };
@@ -37,7 +37,7 @@ app.post('/api/send-email', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
